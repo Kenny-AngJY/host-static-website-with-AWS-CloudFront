@@ -11,7 +11,7 @@ https://medium.com/@kennyangjy/host-a-static-website-using-aws-cloudfront-with-s
 
 ### To provision the resources in this repository:
 1. `git clone https://github.com/Kenny-AngJY/host-static-website-with-AWS-CloudFront.git`
-2. If you have an ACM certificate in the us-east-1 region and a public Route53 hosted zone. You can modify the default value of the 3 variables below in [./variables.tf](https://github.com/Kenny-AngJY/Medium-3/blob/main/variables.tf)
+2. If you have an ACM certificate in the us-east-1 region and a public Route53 hosted zone. You can modify the default value of the 3 variables below in [./variables.tf](https://github.com/Kenny-AngJY/host-static-website-with-AWS-CloudFront/blob/main/variables.tf)
   > - acm_certificate_arn
   > - hosted_zone_name
   > - hosted_zone_id
