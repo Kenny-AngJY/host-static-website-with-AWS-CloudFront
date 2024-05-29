@@ -14,7 +14,7 @@ variable "enable_caching" {
 variable "enable_load_balancer_origin" {
   description = "Toggle the creation of the load balancer origin and it's associated resources."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "enable_cloudfront_logging" {
