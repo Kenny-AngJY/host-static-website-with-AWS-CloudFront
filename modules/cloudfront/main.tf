@@ -1,6 +1,6 @@
 resource "aws_cloudfront_distribution" "elb_s3_distribution" {
   comment             = "Created from Terraform"
-  default_root_object = "index.html"
+  default_root_object = "en/index.html"
   enabled             = true
   default_cache_behavior {
     allowed_methods = var.method
@@ -108,7 +108,7 @@ resource "aws_cloudfront_distribution" "elb_s3_distribution" {
 }
 
 resource "aws_cloudfront_origin_access_control" "example" {
-  name                              = "terraform-cloudfront-OAC"
+  name                              = "terraform-cloudfront-host-static-website-OAC"
   description                       = "created-from-terraform"
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
