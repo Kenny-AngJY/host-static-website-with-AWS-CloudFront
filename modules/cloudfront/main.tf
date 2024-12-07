@@ -113,6 +113,7 @@ resource "aws_cloudfront_distribution" "elb_s3_distribution" {
       include_cookies = false
     }
   }
+  tags = var.default_tags
 }
 
 resource "aws_cloudfront_origin_access_control" "example" {

@@ -3,3 +3,7 @@ variable "create_lambda_at_edge" {
   type        = bool
   default     = false
 }
+
+variable "default_tags" {
+  type = map(any)
+}

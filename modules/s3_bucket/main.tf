@@ -3,6 +3,7 @@ data "aws_canonical_user_id" "current" {}
 resource "aws_s3_bucket" "standard_logging" {
   count  = var.enable_cloudfront_logging ? 1 : 0
   bucket = format("cloudfront-logs-%s", var.random_string)
+  tags   = var.default_tags
 }
 
 resource "aws_s3_bucket_acl" "standard_logging" {
@@ -41,6 +42,7 @@ resource "aws_s3_bucket_ownership_controls" "standard_logging" {
 
 resource "aws_s3_bucket" "main" {
   bucket = format("terraform-cloudfront-%s", var.random_string)
+  tags   = var.default_tags
 }
 
 resource "aws_s3_bucket_public_access_block" "main" {

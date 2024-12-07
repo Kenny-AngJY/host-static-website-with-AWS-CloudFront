@@ -17,6 +17,7 @@ resource "aws_lambda_function" "origin_request" {
   source_code_hash = data.archive_file.lambda.output_base64sha256
   publish          = true # Whether to publish creation/change as new Lambda Function Version.
   runtime          = "python3.12"
+  tags             = var.default_tags
 }
 
 resource "aws_iam_role" "cloudfront_viewer_request" {
@@ -43,6 +44,7 @@ resource "aws_iam_role" "cloudfront_viewer_request" {
   managed_policy_arns = [
     "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
   ]
+  tags = var.default_tags
 }
 
 provider "aws" {

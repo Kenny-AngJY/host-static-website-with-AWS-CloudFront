@@ -54,6 +54,10 @@ variable "lambda_edge_arn" {
   type = string
 }
 
+variable "default_tags" {
+  type = map(any)
+}
+
 ################
 ## Toogle caching
 ################

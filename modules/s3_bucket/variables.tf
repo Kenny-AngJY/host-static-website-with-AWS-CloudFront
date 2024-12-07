@@ -9,3 +9,7 @@ variable "distribution_arn" {
 variable "enable_cloudfront_logging" {
   type = string
 }
+
+variable "default_tags" {
+  type = map(any)
+}
