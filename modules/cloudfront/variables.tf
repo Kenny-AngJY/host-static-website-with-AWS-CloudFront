@@ -46,6 +46,14 @@ variable "logging_bucket_domain_name" {
   type = string
 }
 
+variable "create_lambda_at_edge" {
+  type = string
+}
+
+variable "lambda_edge_arn" {
+  type = string
+}
+
 ################
 ## Toogle caching
 ################

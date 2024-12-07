@@ -21,3 +21,15 @@ output "CloudFront_Distribution_Domain_Name" {
 output "aws_canonical_user_id" {
   value = module.s3.aws_canonical_user_id
 }
+
+output "create_lambda_at_edge" {
+  value = var.create_lambda_at_edge
+}
+
+output "bucket_regional_domain_name" {
+  value = module.s3.bucket_regional_domain_name
+}
+
+output "lambda_at_edge_qualified_arn" {
+  value = module.lambda_at_edge.lambda_at_edge_qualified_arn
+}

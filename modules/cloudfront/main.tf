@@ -13,6 +13,14 @@ resource "aws_cloudfront_distribution" "elb_s3_distribution" {
     min_ttl                = 0
     default_ttl            = 0
     max_ttl                = 0
+    dynamic "lambda_function_association" {
+      for_each = var.create_lambda_at_edge ? [1] : []
+      content {
+        event_type   = "origin-request"
+        include_body = true
+        lambda_arn   = var.lambda_edge_arn
+      }
+    }
   }
 
   dynamic "ordered_cache_behavior" {

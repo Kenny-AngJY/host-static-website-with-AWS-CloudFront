@@ -32,6 +32,8 @@ module "cloudfront" {
   hosted_zone_id              = var.hosted_zone_id
   enable_cloudfront_logging   = var.enable_cloudfront_logging
   logging_bucket_domain_name  = module.s3.logging_bucket_domain_name
+  create_lambda_at_edge       = var.create_lambda_at_edge
+  lambda_edge_arn             = var.create_lambda_at_edge ? module.lambda_at_edge.lambda_at_edge_qualified_arn : ""
 }
 
 module "asg" {
@@ -49,4 +51,13 @@ module "s3" {
   random_string             = random_string.random_string.id
   distribution_arn          = module.cloudfront.distribution_arn
   enable_cloudfront_logging = var.enable_cloudfront_logging
+}
+
+module "lambda_at_edge" {
+  source = "./modules/lambda"
+  # count  = var.create_lambda_at_edge ? 1 : 0
+  create_lambda_at_edge = var.create_lambda_at_edge
+  # providers = {
+  #   aws = aws.useast1
+  # }
 }

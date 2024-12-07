@@ -23,6 +23,12 @@ variable "enable_cloudfront_logging" {
   default     = false
 }
 
+variable "create_lambda_at_edge" {
+  description = "Toggle the creation of a Lambda function that is triggered during the origin request."
+  type        = bool
+  default     = false
+}
+
 #####################
 ## ACM & Route53 (Optional)
 #####################
