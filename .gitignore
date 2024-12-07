@@ -42,3 +42,6 @@ crash.*.log
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# Ignore output of data.archive_file.lambda
+.modules
