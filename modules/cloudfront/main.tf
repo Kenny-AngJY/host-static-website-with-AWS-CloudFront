@@ -1,6 +1,6 @@
 resource "aws_cloudfront_distribution" "elb_s3_distribution" {
   comment             = "Created from Terraform"
-  default_root_object = "en/index.html"
+  default_root_object = var.enable_load_balancer_origin ? "index.html" : "en/index.html"
   enabled             = true
   default_cache_behavior {
     allowed_methods = var.method
