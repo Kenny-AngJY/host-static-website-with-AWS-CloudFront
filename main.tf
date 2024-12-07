@@ -25,7 +25,7 @@ module "cloudfront" {
   source                      = "./modules/cloudfront"
   enable_load_balancer_origin = var.enable_load_balancer_origin
   asg_origin_id               = var.enable_load_balancer_origin ? module.asg[0].origin_id : ""
-  s3_origin_id                = format("%s.s3.ap-southeast-1.amazonaws.com", module.s3.full_bucket_name)
+  s3_origin_id                = module.s3.bucket_regional_domain_name
   enable_caching              = var.enable_caching
   acm_certificate_arn         = var.acm_certificate_arn
   hosted_zone_name            = var.hosted_zone_name
