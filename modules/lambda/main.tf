@@ -41,10 +41,13 @@ resource "aws_iam_role" "cloudfront_viewer_request" {
       },
     ]
   })
-  managed_policy_arns = [
-    "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-  ]
   tags = var.default_tags
+}
+
+resource "aws_iam_role_policy_attachment" "AWSLambdaBasicExecutionRole" {
+  count      = var.create_lambda_at_edge ? 1 : 0
+  role       = aws_iam_role.cloudfront_viewer_request[0].name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
 provider "aws" {
