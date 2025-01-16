@@ -12,13 +12,16 @@ resource "random_string" "random_string" {
 }
 
 module "vpc" {
-  count                     = var.enable_load_balancer_origin ? 1 : 0
-  source                    = "./modules/vpc"
-  vpc_cidr_block            = "10.1.0.0/16"
-  list_of_subnet_cidr_range = ["10.1.0.0/24", "10.1.1.0/24", "10.1.2.0/24"]
-  list_of_azs               = ["ap-southeast-1a", "ap-southeast-1b", "ap-southeast-1c"]
-  default_tags              = local.default_tags
-  ALB_sg_id                 = module.asg[0].ALB_sg_id
+  count              = var.enable_load_balancer_origin ? 1 : 0
+  source             = "./modules/vpc"
+  list_of_azs        = ["ap-southeast-1a", "ap-southeast-1b", "ap-southeast-1c"]
+  default_tags       = local.default_tags
+  ALB_sg_id          = module.asg[0].ALB_sg_id
+  create_nat_gateway = true
+
+  vpc_cidr_block                    = "10.1.0.0/16"
+  list_of_public_subnet_cidr_range  = ["10.1.0.0/24", "10.1.1.0/24", "10.1.2.0/24"]
+  list_of_private_subnet_cidr_range = ["10.1.3.0/24", "10.1.4.0/24", "10.1.5.0/24"]
 }
 
 module "cloudfront" {
@@ -40,7 +43,7 @@ module "cloudfront" {
 module "asg" {
   count                   = var.enable_load_balancer_origin ? 1 : 0
   source                  = "./modules/asg"
-  list_of_subnets         = module.vpc[0].list_of_subnet_ids
+  list_of_subnets         = module.vpc[0].list_of_public_subnet_ids
   default_tags            = local.default_tags
   list_of_security_groups = [module.vpc[0].sg_id]
   vpc_id                  = module.vpc[0].vpc_id

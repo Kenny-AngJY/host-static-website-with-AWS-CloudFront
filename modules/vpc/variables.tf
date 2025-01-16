@@ -7,7 +7,13 @@ variable "vpc_cidr_block" {
 }
 
 ### list (or tuple): a sequence of values
-variable "list_of_subnet_cidr_range" {
+variable "list_of_public_subnet_cidr_range" {
+  type = list(string)
+  ### Functions may not be called here.
+  #   default = cidrsubnets("10.1.0.0/20", 4, 4, 4)
+}
+
+variable "list_of_private_subnet_cidr_range" {
   type = list(string)
   ### Functions may not be called here.
   #   default = cidrsubnets("10.1.0.0/20", 4, 4, 4)
@@ -19,4 +25,8 @@ variable "list_of_azs" {
 
 variable "ALB_sg_id" {
   type = string
+}
+
+variable "create_nat_gateway" {
+  type = bool
 }
