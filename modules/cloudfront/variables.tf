@@ -59,7 +59,7 @@ variable "default_tags" {
 }
 
 ################
-## Toogle caching
+## Toggle caching
 ################
 variable "enable_caching" {
   type        = bool

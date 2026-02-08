@@ -1,4 +1,5 @@
 data "aws_ami" "amazon-linux-2" {
+  owners      = ["amazon"]
   most_recent = true
 
   filter {
@@ -40,6 +41,7 @@ resource "aws_launch_template" "this" {
 }
 
 resource "aws_autoscaling_group" "this" {
+  name                = "cloudfront-asg-demo"
   vpc_zone_identifier = var.list_of_subnets
   desired_capacity    = var.desired_capacity
   max_size            = var.desired_capacity
@@ -83,6 +85,7 @@ resource "aws_iam_role_policy_attachment" "AmazonSSMManagedInstanceCore" {
 }
 
 resource "aws_lb" "alb" {
+  name                       = "cloudfront-origin-demo"
   internal                   = false
   load_balancer_type         = "application"
   security_groups            = [aws_security_group.lb_sg.id]

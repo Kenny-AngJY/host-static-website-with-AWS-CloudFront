@@ -6,10 +6,6 @@ output "sg_id" {
   value = var.enable_load_balancer_origin ? module.vpc[0].sg_id : "NA"
 }
 
-output "list_of_subnet_ids" {
-  value = var.enable_load_balancer_origin ? module.vpc[0].list_of_subnet_ids : []
-}
-
 output "random_test" {
   value = random_string.random_string.id
 }
